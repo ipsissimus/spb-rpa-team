@@ -3,6 +3,8 @@ href: index.yaml
 items: 
   - name: About
     href: about.md
+  - name: Robots
+    href: robots.md
   - name: Additional page 
     href: page.md
   - name: Another page 
