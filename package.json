@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@diplodoc/documentation-template",
   "version": "0.0.0",
   "description": "template for your diplodoc documentation with hot reload development server",
@@ -14,7 +15,7 @@
   "author": {
     "name": "moki",
     "email": "morozov.kirill.moki@gmail.com",
-    "url": "github.com/moki"
+    "url": "https://github.com/moki"
   },
   "keywords": [
     "diplodoc",
@@ -35,15 +36,14 @@
     "build:docs": "yfm --input docs --output docs-html"
   },
   "dependencies": {
-    "@doc-tools/docs": "^3.23.0",
-    "chokidar": "^3.5.3",
-    "express": "^4.18.2",
-    "glob": "^10.3.4",
+    "@diplodoc/cli": "^4.19.2",
+    "chokidar": "^3.6.0",
+    "express": "^4.19.2",
+    "glob": "^10.3.12",
     "lodash": "^4.17.21",
-    "open": "^8.4.2",
+    "open": "^10.1.0",
     "parse5": "^7.1.2",
     "parse5-utils": "^2.0.0",
     "serve-static": "^1.15.0"
-  },
-  "devDependencies": {}
+  }
 }
