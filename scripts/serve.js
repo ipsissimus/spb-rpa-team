@@ -1,19 +1,20 @@
-const fs = require('fs');
-const path = require('path');
-const {execSync} = require('child_process');
+import fs from 'fs';
+import path from 'path';
+import { execSync } from 'child_process';
 
-const chokidar = require('chokidar'); 
-const express = require('express');
-const serveStatic = require('serve-static');
+import chokidar from 'chokidar';
+import express from 'express';
+import serveStatic from 'serve-static';
 
-const {parse, serialize} = require('parse5');
-const utils = require('parse5-utils');
+import { parse, serialize } from 'parse5';
+import utils from 'parse5-utils';
 
-const watcher = new chokidar.FSWatcher({ignored: '*.swp'});
-const glob = require('glob');
+const watcher = new chokidar.FSWatcher({ ignored: '*.swp' });
+import { glob } from 'glob';
 
-const {debounce} = require('lodash');
-const open = require('open');
+import lodash_pkg from 'lodash';
+const { debounce } = lodash_pkg;
+import open from 'open';
 
 class Server {
   // read configuration
@@ -92,7 +93,7 @@ events.addEventListener("${this.configs.sseEventName}", function(e) {
     // - notify client with reload event
     watcher.on('all', debounce((event, path) => {
       console.info(`event: ${event}, path: ${path}`);
-      
+
       try {
         this.buildDocumentation.call(this);
       } catch (err) {
@@ -115,13 +116,13 @@ events.addEventListener("${this.configs.sseEventName}", function(e) {
     console.info('injecting sse into html');
 
     const pattern = path.join(this.configs.serveDir, '**', '*.html');
-    const paths = glob.globSync(pattern, {ignore: 'node_modules/**'}).map(p => path.join(process.cwd(), p));
-  
+    const paths = glob.globSync(pattern, { ignore: 'node_modules/**' }).map(p => path.join(process.cwd(), p));
+
     for (const path of paths) {
       try {
         const html = fs.readFileSync(path, 'utf8');
         const transformed = this.injectSSEIntoHTML(html, this.configs.sseScript);
-        fs.writeFileSync(path, transformed, {encoding: 'utf8'});
+        fs.writeFileSync(path, transformed, { encoding: 'utf8' });
       } catch (err) {
         process.exit(1);
       }
@@ -158,7 +159,7 @@ events.addEventListener("${this.configs.sseEventName}", function(e) {
     console.info(`serving on: http://0.0.0.0:${this.configs.port}`);
 
     if (this.configs.autoOpen) {
-        open(`http://0.0.0.0:${this.configs.port}`);
+      open(`http://0.0.0.0:${this.configs.port}`);
     }
   }
 }
@@ -168,7 +169,7 @@ function traverse(node, cb) {
 
   const childNodes = node['childNodes'];
   if (!childNodes) {
-    return ;
+    return;
   }
 
   for (const childNode in childNodes) {
